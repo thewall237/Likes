@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 // ページコンポーネントをインポートする
 import PhotoList from './components/pages/PhotoList.vue'
 import Login from './components/pages/Login.vue'
+import store from './store'
+import SystemError from './components/pages/errors/System.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -17,7 +19,18 @@ const routes = [
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    beforeEnter(to, from, next) {
+      if(store.getters['auth/check']) {
+        next('/')
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: '/500',
+    component: SystemError
   }
 ]
 

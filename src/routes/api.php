@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ログインユーザー
+Route::get('/user', fn() => Auth::user())->name('user');
 // 会員登録
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // ログイン
-Route::post('/login', 'Auth\LoginController@login')->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 // ログアウト
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
