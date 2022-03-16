@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 
 // ログインユーザー
 Route::get('/user', fn() => Auth::user())->name('user');
+
 // 会員登録
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
@@ -29,3 +31,6 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 // ログアウト
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// 写真投稿
+Route::post('/photos', [PhotoController::class, 'create'])->name('photo.create');

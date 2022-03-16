@@ -6,38 +6,43 @@ import PhotoList from './components/pages/PhotoList.vue'
 import Login from './components/pages/Login.vue'
 import store from './store'
 import SystemError from './components/pages/errors/System.vue'
+import PhotoDetail from './components/pages/PhotoDetail.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
 Vue.use(VueRouter)
 
 // パスとコンポーネントのマッピング
-const routes = [
-  {
-    path: '/',
-    component: PhotoList
-  },
-  {
-    path: '/login',
-    component: Login,
-    beforeEnter(to, from, next) {
-      if(store.getters['auth/check']) {
-        next('/')
-      } else {
-        next();
-      }
+const routes = [{
+        path: '/',
+        component: PhotoList
+    },
+    {
+        path: '/login',
+        component: Login,
+        beforeEnter(to, from, next) {
+            if (store.getters['auth/check']) {
+                next('/')
+            } else {
+                next();
+            }
+        }
+    },
+    {
+        path: '/photos/:id',
+        component: PhotoDetail,
+        props: true
+    },
+    {
+        path: '/500',
+        component: SystemError
     }
-  },
-  {
-    path: '/500',
-    component: SystemError
-  }
 ]
 
 // VueRouterインスタンスを作成する
 const router = new VueRouter({
-  mode: 'history',
-  routes
+    mode: 'history',
+    routes
 })
 
 // VueRouterインスタンスをエクスポートする

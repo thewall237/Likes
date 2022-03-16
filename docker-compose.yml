@@ -28,6 +28,8 @@ services:
       - app
     volumes:
       - ./src/:/var/www/html
+    environment:
+      CLIENT_MAX_BODY_SIZE: 10M
 
   db:
     build:
