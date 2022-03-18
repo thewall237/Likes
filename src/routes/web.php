@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// 写真ダウンロード
+Route::get('/photos/{photo}/download', [App\Http\Controllers\PhotoController::class, 'download']);
 
 Route::get('/{any?}', fn() => view('index'))->where('any', '.+');
 

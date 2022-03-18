@@ -11,10 +11,10 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.browserSync({
-    proxy: 'http://localhost/', // アプリの起動アドレス
-    open: false // ブラウザを自動で開かない
-  })
+mix.browserSync({
+        proxy: 'http://localhost/', // アプリの起動アドレス
+        open: false // ブラウザを自動で開かない
+    })
     .js("resources/js/app.js", "public/js").vue()
     .js("resources/js/router.js", "public/js").vue()
-    .version()
+    .version();

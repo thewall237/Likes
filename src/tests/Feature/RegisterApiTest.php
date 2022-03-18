@@ -15,22 +15,22 @@ class RegisterApiTest extends TestCase
      * @test
      */
 
-     function should_新しいユーザーを作成して返却する()
-     {
-         $data = [
-             'name' => 'likes user',
-             'email' => 'dummy@email.com',
-             'password' => 'test1234',
-             'password_confirmation' => 'test1234',
-         ];
+    function should_新しいユーザーを作成して返却する()
+    {
+        $data = [
+            'name' => 'likes user',
+            'email' => 'dummy@email.com',
+            'password' => 'test1234',
+            'password_confirmation' => 'test1234',
+        ];
 
-         $response = $this->json('POST', route('register'), $data);
+        $response = $this->json('POST', route('register'), $data);
 
-         $user = User::first();
-         $this->assertEquals($data['name'], $user->name);
+        $user = User::first();
+        $this->assertEquals($data['name'], $user->name);
 
-         $response
+        $response
             ->assertStatus(201)
             ->assertJson(['name' => $user->name]);
-     }
+    }
 }
